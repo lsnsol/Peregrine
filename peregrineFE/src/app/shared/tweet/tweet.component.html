@@ -1,0 +1,164 @@
+<!-- add tweet -->
+<mat-card class="tweet-card" *ngIf="addNewTweetFlag">
+  <div class="header">
+    <mat-card-header>
+      <img mat-card-avatar src="assets/avatars/av_{{avatar}}.png" alt="avatar">
+      <mat-card-title class="title">{{fullname | titlecase}}</mat-card-title>@{{username}}
+    </mat-card-header>
+    <img mat-card-avatar src="assets/icons/icon-round-inverted.png" alt="Peregrine Logo" height="45px" width="45px">
+  </div>
+  <mat-card-content>
+    <div class="add-comment">
+      <input type="text" id="add-comment" [(ngModel)]="newTweet" (keydown)="handleKeyboardEvent(0, $event, 'Tweet')"
+        autofocus>
+      <div class="icons comment-icon" (click)="addNewTweet()">
+        <mat-icon>chat</mat-icon>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!-- add tweet ends -->
+
+<ng-container *ngFor="let tweetWC of tweets; let twcI=index;">
+  <!-- show tweet -->
+  <mat-card class="tweet-card" *ngIf="!editTweetFlag[twcI] && !addNewTweetFlag">
+    <div class="header">
+      <mat-card-header>
+        <img mat-card-avatar src="assets/avatars/av_{{tweetWC?.tweet?.avatar}}.png" alt="avatar">
+        <mat-card-title class="title">
+          <ng-container *ngIf="!showUsernameHighlight">
+            @{{tweetWC?.tweet?.username}}
+          </ng-container>
+          <a *ngIf="showUsernameHighlight"
+            (click)="userNameClicked(tweetWC.tweet.username,tweetWC.tweet.avatar)">@{{tweetWC?.tweet?.username}}</a>
+        </mat-card-title>
+      </mat-card-header>
+      <div>
+        {{tweetDateArray[twcI]}}
+        <img mat-card-avatar src="assets/icons/icon-round-inverted.png" alt="Peregrine Logo" height="45px" width="45px">
+      </div>
+    </div>
+    <mat-card-content>
+      <p>
+        {{tweetWC?.tweet?.message}}
+      </p>
+    </mat-card-content>
+    <hr>
+    <mat-card-actions>
+      <div class="action-btns">
+        <div class="icons" (click)="toggleTweetLike(twcI)">
+          <mat-icon [ngClass]="{'favorite':favoriteIcon[twcI] ==='favorite'}">{{favoriteIcon[twcI]}}</mat-icon>
+          &nbsp;&nbsp;{{tweetWC?.tweet?.likes}}
+        </div>
+        <div class="icons" (click)="toggleComments(twcI)">
+          <mat-icon>chat</mat-icon> &nbsp;&nbsp;{{tweetWC?.tweet?.noOfComments}}
+        </div>
+        <div class="icons" *ngIf="userPageTweet" (click)="editTweetButton(twcI)">
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="icons" *ngIf="userPageTweet" (click)="deleteTweet(twcI)">
+          <mat-icon>close</mat-icon>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  <!-- show tweet ends -->
+
+  <!-- edit tweet -->
+  <mat-card class="tweet-card" *ngIf="editTweetFlag[twcI]">
+    <div class="header">
+      <mat-card-header>
+        <img mat-card-avatar src="assets/avatars/av_{{tweetWC?.tweet?.avatar}}.png" alt="avatar">
+        <mat-card-title class="title">@{{tweetWC?.tweet?.username}}</mat-card-title>
+      </mat-card-header>
+      <div>
+        {{tweetDateArray[twcI]}}
+        <img mat-card-avatar src="assets/icons/icon-round-inverted.png" alt="Peregrine Logo" height="45px" width="45px">
+      </div>
+    </div>
+    <mat-card-content>
+      <div class="edit-comment">
+        <div class="add-comment">
+          <input type="text" width="100%" id="edit-tweet-{{tweetWC?.tweet?.tweetId}}"
+            (keydown)="handleKeyboardEvent(twcI, $event, 'EditTweet')" [(ngModel)]="tweetWC.tweet.message">
+        </div>
+      </div>
+    </mat-card-content>
+    <hr>
+    <mat-card-actions>
+      <div class="action-btns">
+        <div class="icons comment-icon" (click)="updateTweet(twcI)">
+          <mat-icon>chat</mat-icon>
+        </div>
+        <div class="icons comment-icon icon2" (click)="cancelEditTweet(twcI)">
+          <mat-icon>close</mat-icon>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  <!-- edit tweet ends -->
+
+  <!-- comments of tweets -->
+  <mat-card class="comments-card" *ngIf="commentFlag[twcI]">
+    <mat-card class="comment-card">
+      <mat-card-content>
+        <div class="add-comment">
+          <input type="text" id="add-comment-{{tweetWC?.tweet?.tweetId}}" [(ngModel)]="newComment[twcI]"
+            (keydown)="handleKeyboardEvent(twcI, $event, 'Comment')">
+          <div class="icons comment-icon" (click)="addComment(twcI)">
+            <mat-icon>chat</mat-icon>
+          </div>
+          <div class="icons comment-icon icon2" (click)="clearCommentInput(twcI)">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="comment-card" *ngFor="let comment of tweetWC.comments; let i=index">
+      <div class="header">
+        <mat-card-header>
+          <mat-card-title>
+            <label class="comment-username">@{{comment?.username}}</label>
+          </mat-card-title>
+        </mat-card-header>
+        <div>
+          <label class="comment-date">{{commentDateArray[tweetWC.tweet.tweetId][i]}}</label>
+        </div>
+      </div>
+      <mat-card-content>
+        <hr>
+        <div *ngIf="!comment?.edit" class="comment-list">
+          <p>
+            {{comment.message}}
+          </p>
+          <div class="icons comment-icon" (click)="toggleCommentLike(twcI,i)">
+            <mat-icon [ngClass]="{'favorite':commentFavoriteIcon[tweetWC.tweet.tweetId][i] ==='favorite'}">
+              {{commentFavoriteIcon[tweetWC.tweet.tweetId][i]}}
+            </mat-icon>
+            &nbsp;&nbsp;{{tweetWC.comments[i].likes}}
+          </div>
+          <div class="icons comment-icon" *ngIf="comment?.username === username" (click)="deleteComment(twcI,i)">
+            <mat-icon>close</mat-icon>
+          </div>
+          <div class="icons comment-icon icon2" *ngIf="comment?.username === username"
+            (click)="editComment(twcI,i, comment)">
+            <mat-icon>edit</mat-icon>
+          </div>
+        </div>
+        <div *ngIf="comment?.edit" class="edit-comment">
+          <div class="add-comment">
+            <input type="text" id="edit-comment-{{comment?.commentId}}" [(ngModel)]="comment.message"
+              (keydown)="handleKeyboardEvent(twcI, $event, 'EditComment', i)">
+            <div class="icons comment-icon" (click)="editCommentConfirm(twcI,i)">
+              <mat-icon>chat</mat-icon>
+            </div>
+            <div class="icons comment-icon icon2" (click)="comment.edit = false;">
+              <mat-icon>close</mat-icon>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+  <!-- comments of tweets ends -->
+</ng-container>

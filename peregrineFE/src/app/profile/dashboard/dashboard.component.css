@@ -1,0 +1,28 @@
+.details {
+  margin-top: 15px;
+}
+
+.profile-userName {
+  margin-left: 10px;
+  font-size: 20px;
+  vertical-align: bottom;
+  height: 35px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  margin-left: 5px;
+  vertical-align: bottom;
+  height: 37px;
+  cursor: pointer;
+}
+
+.padding {
+  padding: 0 15%;
+}
+
+@media only screen and (max-width: 600px) {
+  .padding{
+    padding: 0;
+  }
+}

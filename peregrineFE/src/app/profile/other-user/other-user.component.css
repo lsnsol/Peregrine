@@ -1,0 +1,69 @@
+.avatar {
+  border-radius: 50px;
+}
+
+.profile-userName {
+  margin-left: 10px;
+  font-size: 20px;
+  vertical-align: bottom;
+  height: 35px;
+}
+
+.profile-name {
+  margin-left: 15px;
+  font-size: 26px;
+  font-weight: 600;
+  vertical-align: bottom;
+  height: 35px;
+}
+
+.profile {
+  justify-content: center;
+}
+
+.profile-icon {
+  margin-left: 5px;
+  vertical-align: bottom;
+  height: 37px;
+  cursor: pointer;
+}
+
+.profile-details-title {
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  vertical-align: bottom;
+  height: 35px;
+}
+
+.profile-details {
+  margin-left: 5px;
+  font-size: 16px;
+  vertical-align: bottom;
+  height: 34px;
+}
+
+.details {
+  margin-top: 15px;
+}
+
+.profile-details-pass {
+  height: 30px;
+}
+
+.edit-pass {
+  display: inline-block;
+  height: 40px;
+}
+
+.padding {
+  padding: 0 15%;
+}
+
+.top-icon {
+  padding-top: 13px;
+}
+
+.top-label {
+  cursor: pointer;
+}

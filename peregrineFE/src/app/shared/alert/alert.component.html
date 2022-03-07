@@ -1,0 +1,6 @@
+<div class="alert-container">
+    <ngb-alert #alert *ngIf="showAlert" (closed)="showAlert = false">
+        <ng-container *ngIf="showDate">[ {{_date | date:dateFormat}} ] - </ng-container>{{message}}
+        <button class="close" *ngIf="dismissible" (click)="showAlert=false">x</button>
+    </ngb-alert>
+</div>

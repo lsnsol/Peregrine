@@ -1,0 +1,89 @@
+.ng-invalid:not(form) {
+  border: 2px solid red;
+}
+
+mat-select {
+  border: none !important;
+}
+
+.myform {
+  margin: auto;
+  max-width: 500px;
+}
+
+.myform label,
+.myform input {
+  margin-bottom: 5px;
+}
+
+.card {
+  padding: 8px;
+  max-width: 515px;
+  margin: auto;
+}
+
+.card a {
+  color: white;
+}
+
+.card {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.card .btn {
+  width: 200px;
+  margin: auto;
+  margin-top: 15px;
+  align-items: center;
+  background-color: white;
+  color: #1da1f2;
+  border: 2px solid transparent;
+}
+
+.card .btn:hover,
+.card .btn:focus,
+.card .btn:active {
+  background-color: #1da1f2;
+  color: white;
+  border: 2px solid white;
+}
+
+a {
+  cursor: pointer;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding-left: 10px;
+  height: 32px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.input-box .prefix {
+  font-size: 16px;
+  margin-right: 5px;
+  color: black;
+}
+
+.input-box input {
+  margin-top: 5px;
+}
+
+input::placeholder {
+  color: green;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 !important;
+}

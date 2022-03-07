@@ -1,0 +1,27 @@
+<div [@simpleFadeAnimation]="'in'" class="container-fluid">
+  <div class="row">
+    <div class="col-8 profile">
+      <img class="avatar" src="assets/avatars/av_{{avatar ? avatar : 'default'}}.png" alt="avatar" height="50px"
+        width="50px">
+      <label class="profile-name">@{{username}}</label>
+    </div>
+    <div class="col-2 profile">
+      <label class="profile-userName top-icon top-label" (click)="redirect('/profile')">Dashboard</label>
+      <label class="profile-icon top-icon" (click)="redirect('/profile')">
+        <mat-icon>dashboard</mat-icon>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 padding" *ngIf="username != ''">
+      <peregrine-tweet [username]="currentUser" [otherUser]="true" [otherUsername]="username"
+        [showUsernameHighlight]="false">
+      </peregrine-tweet>
+    </div>
+  </div>
+</div>

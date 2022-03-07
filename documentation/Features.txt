@@ -1,0 +1,42 @@
+Features of Peregrine:
+1. Register new user
+   - does not register with same email twice
+   - does not register with same username twice
+   - validation for email, password, phone number
+   - validation for required fields then only signup button will come
+   - error and succeess messages for validation, signup, server error
+
+2. Login existing user
+   - login existing user with username and password
+   - error messages for unknown user, non-matching credentials, server error
+
+3. Dashboard page
+   - show all tweets from all users
+   - like tweets
+   - unlike tweets
+   - comment on tweets
+   - edit own comment
+   - delete own comment
+   - refresh and load new tweets
+   - navigate to profile page
+
+4. Profile
+   - show user tweets
+   - add new tweet
+   - edit existing tweet
+   - delete existing tweet
+   - see profile details
+   - change password
+   - navigate to dashboard
+
+5. General Features
+   - refresh will not logout unless logout button is pressed
+   - route guards for non-logged in users
+   - use of Cookie Storage with encryption for securtity
+   - use of Asynchronous Caching for storing profile data, login state and JWT
+   - generic API calling functions for ease of use
+   - Alert Notification system
+   - Loader for better UI implementation
+   - password hashing for security
+   - HTTP error handling for failed responses
+   - General models for easier handling of data

@@ -1,0 +1,59 @@
+spring:
+  profiles:
+    active: prod
+---
+spring:
+  profiles: local
+  kafka:
+    template:
+      default-topic: tweet-events
+    producer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: tweet-events-listener-group
+    admin:
+      properties:
+        bootstrap.servers: localhost:9092,localhost:9093,localhost:9094
+---
+spring:
+  profiles: dev
+  kafka:
+    template:
+      default-topic: tweet-events
+    producer:
+      bootstrap-servers: dev:9092
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: tweet-events-listener-group
+---
+spring:
+  profiles: prod
+  kafka:
+    bootstrap-servers: peregrinekafka.servicebus.windows.net:9093
+    properties:
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://peregrinekafka.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=KYqJc2gTsz5Axg3ZMAJBul2R/6zMpa8r9aAJnkDOYeQ=";
+      sasl.mechanism: PLAIN
+      security.protocol: SASL_SSL
+    client-id: peregrineapp
+    template:
+      default-topic: tweet-events
+    producer:
+      bootstrap-servers: peregrinekafka.servicebus.windows.net:9093
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: peregrinekafka.servicebus.windows.net:9093 
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      group-id: tweet-events-group
+      

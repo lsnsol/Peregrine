@@ -1,0 +1,45 @@
+.mat-icon {
+  vertical-align: middle;
+}
+
+.footer-color {
+  align-items: center;
+  height: 45px;
+}
+
+.header-color {
+  height: 50px;
+}
+
+.logout-btn {
+  padding-top: 10px;
+}
+
+.router-outlet {
+  padding-bottom: 45px;
+}
+
+.logo-label {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.logo-name {
+  padding-top: 12px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.header-col {
+  display: flex;
+}
+
+.main {
+  position: fixed;
+  overflow-y: auto;
+  height: 88%;
+  width: 100%;
+  padding: 10px;
+}

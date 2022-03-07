@@ -1,0 +1,30 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- feature/release_v1
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'production: Banked Account 1TpRV (36d70597-f566-43bd-a174-63c25a7ee2c0)'
+        azureContainerRegistry: '{"loginServer":"peregrinecontainers.azurecr.io", "id" : "/subscriptions/36d70597-f566-43bd-a174-63c25a7ee2c0/resourceGroups/VisualStudioOnline-C93F2775E91542A2BF814241C1817748/providers/Microsoft.ContainerRegistry/registries/peregrineContainers"}'
+        dockerComposeFile: '**/docker-compose.yaml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'docker-compose -f docker-compose.yaml up'

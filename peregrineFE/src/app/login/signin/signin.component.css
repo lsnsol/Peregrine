@@ -1,0 +1,62 @@
+.myform {
+  margin: auto;
+  padding: 15px;
+  border-radius: 20px;
+  max-width: 500px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.tx-tfm {
+  text-transform: uppercase;
+}
+
+.mybtn {
+  border-radius: 50px;
+}
+
+.login-or {
+  position: relative;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.hr-or {
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.card a {
+  color: white;
+}
+
+.card {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.card .btn {
+  margin-top: 15px;
+  width: 200px;
+  background-color: white;
+  color: #1da1f2;
+  border: 2px solid transparent;
+}
+
+.card .btn:hover,
+.card .btn:focus,
+.card .btn:active {
+  background-color: #1da1f2;
+  color: white;
+  border: 2px solid white;
+}
+
+a {
+  cursor: pointer;
+}

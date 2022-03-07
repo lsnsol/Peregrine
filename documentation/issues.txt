@@ -1,0 +1,23 @@
+~edit comment enter not working~
+~edit tweet enter not working~
+~refresh should not logout~
+~multi new comments showing in new comment box~
+~"hi firstName" in header to be shown~
+~width lessen of tweet box~
+~textarea to change to input~
+~localize()~
+~number of comments (sent from backend)~
+~add tweet not showing in view~
+~manual refresh tweets~
+~tweet and comment time~
+~non loggedin user personal tweet~
+
+highlight hashtag
+
+
+Later
+searching algorithm
+hashtags link should search all tweets with same hashtag
+logout after specific time inactivity
+tweet load when end of page
+show new post button and load fresh tweets based on time

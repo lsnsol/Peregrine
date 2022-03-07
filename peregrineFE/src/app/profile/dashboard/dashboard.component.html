@@ -1,0 +1,27 @@
+<div [@simpleFadeAnimation]="'in'" class="container-fluid">
+  <div class="row details">
+    <div class="col-1">
+      <label class="profile-userName" (click)="gotoProfile()">Profile</label>
+      <label class="profile-icon" (click)="gotoProfile()">
+        <mat-icon>account_circle</mat-icon>
+      </label>
+    </div>
+    <div class="col-11">
+      <label class="profile-userName" (click)="refreshTweets()">Refresh Tweets</label>
+      <label class="profile-icon" (click)="refreshTweets()">
+        <mat-icon>refresh</mat-icon>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row" *ngIf="profile">
+    <div class="col-12 padding">
+      <peregrine-tweet [username]="profile.username" (userNameClickEvent)="userNameClickEvent($event)">
+      </peregrine-tweet>
+    </div>
+  </div>
+</div>

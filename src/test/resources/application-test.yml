@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: test
+isTestEnabled: true
+log:
+  dirs: /data/kafka-logs
+

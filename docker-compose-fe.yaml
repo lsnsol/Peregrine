@@ -1,0 +1,11 @@
+version: '3'
+services:
+  peregrine-app-fe:
+    image: peregrinecontainers.azurecr.io/peregrine-app-fe
+    build:
+      context: ./
+      dockerfile: ./peregrineFE/Dockerfile
+    ports:
+      - "8080:4200"
+    volumes:
+      - /data/springboot-docker-compose-app-fe

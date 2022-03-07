@@ -1,0 +1,32 @@
+{
+  "name": "peregrine-main",
+  "version": "1.0.0",
+  "description": "A copy of twitter app using Angular 13, Kafka, Spring Boot, Mongo DB, Jasmine as a sample of full stack development project",
+  "keywords": [
+    "angular",
+    "angular 13",
+    "tweet",
+    "twitter",
+    "kafka",
+    "mongodb",
+    "jasmine",
+    "spring boot",
+    "full stack"
+  ],
+  "scripts": {
+    "start:fe": "cd peregrineFE && npm run start",
+    "build:fe": "cd peregrineFE && ng build",
+    "serve:fe": "cd peregrineFE && npm run serve",
+    "start:docker:fe": "cd peregrineFE && npm run start:docker:fe",
+    "build:fe:prod": "cd peregrineFE && npm run build:prod",
+    "build:fe:prod-opf": "cd peregrineFE && npm run build:prod-opf",
+    
+    "build:be": "gradlew build",
+    "start:be": "gradlew clean bootRun --args='--spring.profiles.active=local'",
+    "serve:be": "npm run build:be && npm run start:be"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Sohrab Azam",
+  "license": "MIT"
+}

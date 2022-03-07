@@ -1,0 +1,75 @@
+<div [@simpleFadeAnimation]="'in'" class="container-fluid">
+  <div class="row">
+    <div class="col-8 profile">
+      <img class="avatar" src="assets/avatars/av_{{profile?.avatar ? profile?.avatar : 'default'}}.png" alt="avatar" height="50px" width="50px">
+      <label class="profile-name">{{profile?.firstName}} {{profile?.lastName}}</label>
+      <label class="profile-userName">@{{profile?.username}}</label>
+    </div>
+    <div class="col-2 profile">
+      <label class="profile-userName top-icon top-label" (click)="showProfile()">Details</label>
+      <label class="profile-icon top-icon" *ngIf="!showprofile" (click)="showProfile()">
+        <mat-icon>visibility</mat-icon>
+      </label>
+      <label class="profile-icon top-icon" *ngIf="showprofile" (click)="showProfile()">
+        <mat-icon>visibility_off</mat-icon>
+      </label>
+    </div>
+    <div class="col-2 profile">
+      <label class="profile-userName top-icon top-label" (click)="redirect('/profile')">Dashboard</label>
+      <label class="profile-icon top-icon" (click)="redirect('/profile')">
+        <mat-icon>dashboard</mat-icon>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row details" *ngIf="showprofile">
+    <div class="col-12 d-flex justify-content-center">
+      <label class="profile-details-title">Email : </label>
+      <label class="profile-details">{{profile?.email}}</label>
+      <label class="profile-details-title">Contact : </label>
+      <label class="profile-details">{{profile?.contactNumber}}</label>
+      <label class="profile-details-title">Password : </label>
+      <ng-container *ngIf="!editPasswordFlag">
+        <label class="profile-details profile-details-pass">**********</label>
+        <label class="profile-icon" (click)="editPasswordFlag = true;">
+          <mat-icon>edit</mat-icon>
+        </label>
+      </ng-container>
+      <ng-container *ngIf="editPasswordFlag">
+        <div class="edit-pass">
+          <input type="password" class="profile-details profile-details-pass" placeholder="Edit Password"
+            [(ngModel)]="editPasswordText">
+          <input type="password" class="profile-details profile-details-pass" placeholder="Edit Pasword Confirm"
+            [(ngModel)]="editPasswordConfirmText">
+        </div>
+        <label class="profile-icon" (click)="editPass()">
+          <mat-icon>check_circle</mat-icon>
+        </label>
+      </ng-container>
+
+    </div>
+  </div>
+  <div class="row" *ngIf="showprofile">
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <div class="row" *ngIf="profile">
+    <div class="col-12 padding">
+      <peregrine-tweet [userPageTweet]="true" [username]="profile.username" [addNewTweetFlag]="true"
+        [fullname]="profile.firstName + ' ' + profile.lastName" [avatar]="profile.avatar ? profile.avatar: 'default'">
+      </peregrine-tweet>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12 padding" *ngIf="profile">
+      <peregrine-tweet [userPageTweet]="true" [username]="profile.username" [showUsernameHighlight]="false">
+      </peregrine-tweet>
+    </div>
+  </div>
+</div>

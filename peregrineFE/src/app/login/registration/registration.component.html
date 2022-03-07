@@ -1,0 +1,43 @@
+<div [@simpleFadeAnimation]="'in'" class="card">
+  <form class="form myform" [formGroup]="registrationForm">
+    <label for="firstName" class="form-label">First Name</label>
+    <input type="text" class="form-control" id="firstName" placeholder="John" aria-describedby="firstName"
+      formControlName="firstName">
+
+    <label for="lastName" class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="lastName" placeholder="Doe" aria-describedby="lastName"
+      formControlName="lastName">
+
+    <label for="email" class="form-label">Email Id</label>
+    <input type="email" class="form-control" id="email" placeholder="john.doe@email.com" formControlName="email">
+
+    <label for="username" class="form-label">User Name</label>
+    <div class="input-box">
+      <span class="prefix">@</span>
+      <input type="text" class="form-control" id="username" placeholder="username" formControlName="username">
+    </div>
+
+    <label for="password" class="form-label">Password [8 to 15 characters which contain at least one lowercase letter,
+      one uppercase letter, one numeric digit, and one special character]</label>
+    <input type="password" class="form-control" id="password" placeholder="123@Qwerty" formControlName="password">
+
+    <label for="confirmPassword" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPassword" placeholder="123@Qwerty"
+      formControlName="confirmPassword">
+
+    <label for="phoneNo" class="form-label">Phone No</label>
+    <input type="text" class="form-control" id="phoneNo" placeholder="1234567890" formControlName="phoneNo">
+
+    <label for="avatar" class="form-label">Avatar</label>
+    <mat-form-field appearance="outline">
+      <mat-select formControlName="avatar">
+        <mat-option *ngFor="let av of avatarsList" [value]="av">
+          <img src="assets/avatars/av_{{av}}.png" alt="{{av}}" height="20px" width="20px"> {{av | titlecase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+  <button class="btn" *ngIf="registrationForm.valid" (click)="signup()">Signup</button>
+  <button class="btn" *ngIf="!registrationForm.valid" (click)="loginRedirect()">Login</button>
+</div>

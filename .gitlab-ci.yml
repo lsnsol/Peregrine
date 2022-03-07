@@ -1,0 +1,17 @@
+stages:
+  - build
+  - build-docker-image
+
+Build Java Project:
+  stage: build
+  script:
+    mvn package
+  artifacts:
+    paths:
+      - /home/gitlab-runner/
+
+Build Docker Image:
+  stage: build-docker-image
+  script:
+    - docker info
+    - docker build -t devopshint/java-maven
